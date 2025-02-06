@@ -510,7 +510,7 @@ function App() {
                   <h3 className="text-2xl font-bold text-white mb-4">Premium Package</h3>
                   <div className="flex items-center justify-center mb-4">
                     <span className="text-gray-400 text-2xl mr-2">₹</span>
-                    <span className="text-6xl font-bold bg-gradient-to-r from-white via-primary-200 to-violet-200 text-transparent bg-clip-text">999</span>
+                    <span className="text-6xl font-bold bg-gradient-to-r from-white via-primary-200 to-violet-200 text-transparent bg-clip-text">499</span>
                     <span className="text-gray-400 ml-2 text-lg">/lifetime</span>
                   </div>
                   <p className="text-primary-400">One-time payment, lifetime access</p>
