@@ -133,49 +133,49 @@ function App() {
     {
       name: 'Harsh Raj',
       role: 'Freelance Consultant',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=128&h=128&q=80',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrjcsyV3KemexcabYTi3XjCrgyHc4S4GLlpg&s',
       quote: "The all-in-one solution I've been searching for. Incredibly intuitive and powerful!"
     },
     {
       name: 'Nikita Sharma',
       role: 'Agency Director',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=128&h=128&q=80',
+      image: 'https://i.pinimg.com/736x/d7/a6/17/d7a617eadc89a5fe0dc41b3183963047.jpg',
       quote: "Outstanding features and premium support. It's completely streamlined our operations."
     },
     {
       name: 'Rohan Mishra',
       role: 'Financial Advisor',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=128&h=128&q=80',
+      image: 'https://cdn.pixabay.com/photo/2023/02/19/08/39/man-7799486_640.jpg',
       quote: 'The financial tracking features are exceptional. Makes tax season a breeze!'
     },
     {
       name: 'Radika Gupta',
       role: 'Marketing Consultant',
-      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=128&h=128&q=80',
+      image: 'https://i.pinimg.com/736x/a7/62/98/a7629832801fc735f40340672ac430df.jpg',
       quote: 'The client management system has helped me grow my business by 40% this year.'
     },
     {
       name: 'Rajiv Kumar',
       role: 'IT Services Provider',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=128&h=128&q=80',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpjsZGZKPgSTZHRlLd2SXpJUBr7wAbZc9gKg&s',
       quote: 'Fantastic tool for tracking multiple projects and client communications simultaneously.'
     },
     {
       name: 'Muskan Garg',
       role: 'Interior Designer',
-      image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=128&h=128&q=80',
+      image: 'https://i.pinimg.com/736x/41/9c/8d/419c8d2af72e6b82beb4551a9af1c7c9.jpg',
       quote: 'The invoice generation and tracking features save me hours every week!'
     },
     {
       name: 'Vikash Sharma',
       role: 'Business Coach',
-      image: 'https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&auto=format&fit=crop&w=128&h=128&q=80',
+      image: 'https://cdn.pixabay.com/photo/2021/12/28/04/38/cute-6898591_960_720.jpg',
       quote: "I recommend this tool to all my clients. It's perfect for scaling service businesses."
     },
     {
       name: 'Mahi Singh',
       role: 'Event Planner',
-      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=128&h=128&q=80',
+      image: 'https://i.pinimg.com/originals/f5/6d/2f/f56d2f3bddfaddcb68523e3592257d44.jpg',
       quote: 'The calendar and task management features are game-changers for event coordination.'
     }
   ];
