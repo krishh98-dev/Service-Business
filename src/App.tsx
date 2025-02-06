@@ -127,19 +127,19 @@ function App() {
     {
       name: 'Ruchi Sahu',
       role: 'Small Business Owner',
-      image: 'https://cdn.pixabay.com/photo/2021/06/26/00/26/fashion-6364998_1280.jpg',
+      image: 'https://i.ibb.co/VvC0vpN/person1.jpg',
       quote: 'This tracker transformed how I manage my service business. Everything I need is in one place!'
     },
     {
       name: 'Harsh Raj',
       role: 'Freelance Consultant',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrjcsyV3KemexcabYTi3XjCrgyHc4S4GLlpg&s',
+      image: 'https://i.ibb.co/M8Gkp9V/person2.jpg',
       quote: "The all-in-one solution I've been searching for. Incredibly intuitive and powerful!"
     },
     {
       name: 'Nikita Sharma',
       role: 'Agency Director',
-      image: 'https://i.pinimg.com/736x/d7/a6/17/d7a617eadc89a5fe0dc41b3183963047.jpg',
+      image: 'https://i.ibb.co/Ld2Cv8b/person3.jpg',
       quote: "Outstanding features and premium support. It's completely streamlined our operations."
     },
     {
@@ -453,6 +453,10 @@ function App() {
                         src={testimonial.image}
                         alt={testimonial.name}
                         className="w-14 h-14 rounded-full ring-2 ring-primary-400 object-cover"
+                        onError={(e) => {
+                          const img = e.target as HTMLImageElement;
+                          img.src = 'https://i.ibb.co/M8Gkp9V/default-avatar.jpg'; // Fallback image
+                        }}
                       />
                       <div className="absolute -bottom-1 -right-1 bg-primary-400 rounded-full p-1">
                         <Star className="w-3 h-3 text-dark fill-current" />
