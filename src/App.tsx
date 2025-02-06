@@ -127,19 +127,19 @@ function App() {
     {
       name: 'Ruchi Sahu',
       role: 'Small Business Owner',
-      image: 'https://i.ibb.co/VvC0vpN/person1.jpg',
+      image: 'https://i.pinimg.com/236x/df/3f/08/df3f0830c7e1e203c74917deea197b3d.jpg',
       quote: 'This tracker transformed how I manage my service business. Everything I need is in one place!'
     },
     {
       name: 'Harsh Raj',
       role: 'Freelance Consultant',
-      image: 'https://i.ibb.co/M8Gkp9V/person2.jpg',
+      image: 'https://i.pinimg.com/236x/2c/1e/51/2c1e51fbb2ce4e5ec1d1e8ea93bb4788.jpg',
       quote: "The all-in-one solution I've been searching for. Incredibly intuitive and powerful!"
     },
     {
       name: 'Nikita Sharma',
       role: 'Agency Director',
-      image: 'https://i.ibb.co/Ld2Cv8b/person3.jpg',
+      image: 'https://img.freepik.com/premium-photo/silhouette-woman-posing-before-colorful-beach-sunset_1358627-12177.jpg',
       quote: "Outstanding features and premium support. It's completely streamlined our operations."
     },
     {
