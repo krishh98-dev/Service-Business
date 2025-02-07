@@ -401,13 +401,15 @@ function App() {
                     transition-all duration-700 border border-white/10 group-hover:border-white/20">
                     
                     {/* Image container */}
-                    <div className="overflow-hidden rounded-xl aspect-[4/3]">
-                      <img 
-                        src={image.src}
-                        alt={image.alt}
-                        className="w-full h-full object-contain sm:object-cover transition-all duration-700 
-                          p-2 sm:p-0"
-                      />
+                    <div className="animated-border">
+                      <div className="overflow-hidden rounded-xl aspect-[4/3]">
+                        <img 
+                          src={image.src}
+                          alt={image.alt}
+                          className="w-full h-full object-contain sm:object-cover transition-all duration-700 
+                            p-2 sm:p-0"
+                        />
+                      </div>
                     </div>
 
                     {/* Title overlay */}
