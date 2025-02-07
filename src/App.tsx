@@ -72,7 +72,6 @@ const scrollbarStyles = `
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {

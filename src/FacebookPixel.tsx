@@ -7,31 +7,45 @@ declare global {
   }
 }
 
+interface FbqFunction {
+  callMethod?: (...args: any[]) => void;
+  queue?: any[];
+  push?: (...args: any[]) => void;
+  loaded?: boolean;
+  version?: string;
+  (...args: any[]): void;
+}
+
 const PIXEL_ID = '419577397226702';
 
 const FacebookPixel = (): JSX.Element => {
   useEffect(() => {
     try {
       // Add Facebook Pixel base code
-      const addPixelScript = (f: Window, b: Document, e: string, v: string, n: string, t: HTMLScriptElement, s: Element | null) => {
+      const addPixelScript = (f: Window, b: Document, e: string, v: string) => {
         if (f.fbq) return;
         
-        const fbq = function() {
-          fbq.callMethod ? fbq.callMethod.apply(fbq, arguments) : fbq.queue.push(arguments);
-        };
+        const fbq = function(this: FbqFunction, ...args: any[]) {
+          if (this.callMethod) {
+            this.callMethod.apply(this, args);
+          } else {
+            this.queue?.push(args);
+          }
+        } as FbqFunction;
+        
+        fbq.queue = [];
+        fbq.loaded = true;
+        fbq.version = '2.0';
         
         f.fbq = fbq;
-        f.fbq.push = fbq;
-        f.fbq.loaded = true;
-        f.fbq.version = '2.0';
-        f.fbq.queue = [];
+        f._fbq = fbq;
+
+        const script = b.createElement('script') as HTMLScriptElement;
+        script.async = true;
+        script.src = v;
         
-        t = b.createElement(e);
-        t.async = true;
-        t.src = v;
-        
-        s = b.getElementsByTagName(e)[0];
-        s?.parentNode?.insertBefore(t, s);
+        const firstScript = b.getElementsByTagName(e)[0];
+        firstScript?.parentNode?.insertBefore(script, firstScript);
       };
 
       // Initialize the pixel
@@ -39,10 +53,7 @@ const FacebookPixel = (): JSX.Element => {
         window,
         document,
         'script',
-        'https://connect.facebook.net/en_US/fbevents.js',
-        'fbq',
-        document.createElement('script'),
-        document.getElementsByTagName('script')[0]
+        'https://connect.facebook.net/en_US/fbevents.js'
       );
 
       // Initialize Facebook Pixel
