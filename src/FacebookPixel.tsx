@@ -13,14 +13,37 @@ const FacebookPixel = (): JSX.Element => {
   useEffect(() => {
     try {
       // Add Facebook Pixel base code
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
+      const addPixelScript = (f: Window, b: Document, e: string, v: string, n: string, t: HTMLScriptElement, s: Element | null) => {
+        if (f.fbq) return;
+        
+        const fbq = function() {
+          fbq.callMethod ? fbq.callMethod.apply(fbq, arguments) : fbq.queue.push(arguments);
+        };
+        
+        f.fbq = fbq;
+        f.fbq.push = fbq;
+        f.fbq.loaded = true;
+        f.fbq.version = '2.0';
+        f.fbq.queue = [];
+        
+        t = b.createElement(e);
+        t.async = true;
+        t.src = v;
+        
+        s = b.getElementsByTagName(e)[0];
+        s?.parentNode?.insertBefore(t, s);
+      };
+
+      // Initialize the pixel
+      addPixelScript(
+        window,
+        document,
+        'script',
+        'https://connect.facebook.net/en_US/fbevents.js',
+        'fbq',
+        document.createElement('script'),
+        document.getElementsByTagName('script')[0]
+      );
 
       // Initialize Facebook Pixel
       window.fbq('init', PIXEL_ID);

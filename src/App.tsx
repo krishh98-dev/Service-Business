@@ -12,8 +12,6 @@ import {
   PieChart,
   Settings,
   Users,
-  ChevronRight,
-  Star,
   Menu,
   X,
   Sparkles,
@@ -21,7 +19,8 @@ import {
   ArrowRight,
   Shield,
   Clock,
-  Zap
+  Zap,
+  Star
 } from 'lucide-react';
 import FacebookPixel from './FacebookPixel';
 import MicrosoftClarity from './components/MicrosoftClarity';
