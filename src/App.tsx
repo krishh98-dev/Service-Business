@@ -12,6 +12,8 @@ import {
   PieChart,
   Settings,
   Users,
+  ChevronRight,
+  Star,
   Menu,
   X,
   Sparkles,
@@ -19,8 +21,7 @@ import {
   ArrowRight,
   Shield,
   Clock,
-  Zap,
-  Star
+  Zap
 } from 'lucide-react';
 import FacebookPixel from './FacebookPixel';
 import { trackPixelEvent } from './utils/pixel';
@@ -71,6 +72,7 @@ const scrollbarStyles = `
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -390,31 +392,28 @@ function App() {
               {galleryImages.map((image, index) => (
                 <div 
                   key={index} 
-                  className="group relative transform transition-all duration-700 hover:-translate-y-2 cursor-pointer"
+                  className="group relative transform transition-all duration-700 hover:-translate-y-2 hover:rotate-1 cursor-pointer"
                   onClick={() => window.open(image.src, '_blank')}
                 >
-                  <div className="relative bg-dark-800/90 p-2 rounded-2xl backdrop-blur-sm 
+                  <div className="relative bg-dark-800/90 p-3 rounded-2xl backdrop-blur-sm 
                     shadow-[0_8px_32px_rgba(79,70,229,0.15)]
                     group-hover:shadow-[0_20px_80px_rgba(79,70,229,0.3)]
-                    transition-all duration-700">
+                    transition-all duration-700 border border-white/10 group-hover:border-white/20">
                     
                     {/* Image container */}
-                    <div className="animated-border">
-                      <div className="overflow-hidden rounded-xl bg-dark">
-                        <img 
-                          src={image.src}
-                          alt={image.alt}
-                          className="w-full h-full object-cover transition-all duration-500 
-                            hover:scale-[1.02]
-                            rounded-xl"
-                        />
-                      </div>
+                    <div className="overflow-hidden rounded-xl aspect-[4/3]">
+                      <img 
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-full object-contain sm:object-cover transition-all duration-700 
+                          p-2 sm:p-0"
+                      />
                     </div>
 
                     {/* Title overlay */}
                     <div className="absolute inset-0 rounded-2xl flex items-center justify-center
                       bg-gradient-to-b from-transparent via-dark-900/60 to-dark-900/95
-                      opacity-0 group-hover:opacity-100 transition-all duration-500">
+                      opacity-0 group-hover:opacity-100 transition-all duration-700">
                       <div className="text-center p-6">
                         <span className="inline-flex items-center text-white text-lg font-medium px-6 py-3 rounded-full 
                           bg-gradient-to-r from-primary-600/90 to-violet-600/90 backdrop-blur-md
@@ -510,7 +509,7 @@ function App() {
                   <h3 className="text-2xl font-bold text-white mb-4">Premium Package</h3>
                   <div className="flex items-center justify-center mb-4">
                     <span className="text-gray-400 text-2xl mr-2">₹</span>
-                    <span className="text-6xl font-bold bg-gradient-to-r from-white via-primary-200 to-violet-200 text-transparent bg-clip-text">999</span>
+                    <span className="text-6xl font-bold bg-gradient-to-r from-white via-primary-200 to-violet-200 text-transparent bg-clip-text">499</span>
                     <span className="text-gray-400 ml-2 text-lg">/lifetime</span>
                   </div>
                   <p className="text-primary-400">One-time payment, lifetime access</p>
