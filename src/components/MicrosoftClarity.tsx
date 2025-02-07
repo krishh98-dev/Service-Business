@@ -10,30 +10,33 @@ const CLARITY_ID = "q5ll6jldt2";
 
 const MicrosoftClarity = (): null => {
   useEffect(() => {
-    if (window.clarity) return;
+    // Don't initialize if already loaded
+    if (typeof window.clarity === 'function') return;
 
     try {
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = `https://www.clarity.ms/tag/${CLARITY_ID}`;
-      script.setAttribute('data-cookieconsent', 'statistics');
-
-      // Initialize with privacy settings
+      // Initialize clarity function
       window.clarity = window.clarity || function(...args: any[]) {
         (window.clarity.q = window.clarity.q || []).push(args);
       };
 
-      window.clarity('consent', {
-        analytics: false,
-        advertising: false
-      });
-
+      // Create and insert script
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.clarity.ms/tag/${CLARITY_ID}`;
+      script.setAttribute('data-cookieconsent', 'statistics');
+      
+      // Enable analytics by default
+      window.clarity('consent', true);
+      
+      // Add script to document
       const firstScript = document.getElementsByTagName('script')[0];
       if (firstScript?.parentNode) {
         firstScript.parentNode.insertBefore(script, firstScript);
+      } else {
+        document.head.appendChild(script);
       }
     } catch (error) {
-      console.error('Error loading Clarity:', error);
+      console.error('Error initializing Microsoft Clarity:', error);
     }
   }, []);
 

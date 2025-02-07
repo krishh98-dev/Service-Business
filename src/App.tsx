@@ -24,6 +24,7 @@ import {
   Zap
 } from 'lucide-react';
 import FacebookPixel from './FacebookPixel';
+import MicrosoftClarity from './components/MicrosoftClarity';
 import { trackPixelEvent } from './utils/pixel';
 
 const scrollbarStyles = `
@@ -228,6 +229,7 @@ function App() {
   return (
     <>
       <FacebookPixel />
+      <MicrosoftClarity />
       <style>{scrollbarStyles}</style>
       <div className="min-h-screen bg-dark text-white">
         {/* Navigation */}
