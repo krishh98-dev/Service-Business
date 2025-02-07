@@ -24,6 +24,34 @@
   .glass-effect {
     @apply backdrop-blur-lg bg-white/10 border border-white/20;
   }
+
+  .animated-border {
+    @apply relative rounded-xl overflow-hidden p-[3px];
+  }
+
+  .animated-border::before {
+    content: '';
+    @apply absolute inset-0 z-0;
+    background: linear-gradient(
+      90deg,
+      rgba(79, 70, 229, 0.9),
+      rgba(124, 58, 237, 0.9),
+      rgba(236, 72, 153, 0.9),
+      rgba(79, 70, 229, 0.9)
+    );
+    background-size: 300% 300%;
+    animation: borderGradient 8s ease infinite;
+    filter: blur(4px);
+  }
+
+  .animated-border::after {
+    content: '';
+    @apply absolute inset-[3px] rounded-xl bg-dark z-[1];
+  }
+
+  .animated-border > * {
+    @apply relative z-[2];
+  }
 }
 
 .hero-gradient {
@@ -51,6 +79,18 @@
   }
   100% {
     transform: translateY(0px);
+  }
+}
+
+@keyframes borderGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 

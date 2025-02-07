@@ -8,9 +8,10 @@ export default defineConfig({
     exclude: ['lucide-react'],
   },
   build: {
+    outDir: 'dist',
     rollupOptions: {
       input: {
-        main: './src/main.tsx',
+        main: './index.html',
       },
     },
   },
