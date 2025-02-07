@@ -72,6 +72,7 @@ const scrollbarStyles = `
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -244,7 +245,7 @@ function App() {
                 <a href="#testimonials" className="text-gray-300 hover:text-primary-400 transition-colors">Testimonials</a>
                 <a href="#pricing" className="text-gray-300 hover:text-primary-400 transition-colors">Pricing</a>
                 <a 
-                  href="https://payments.cashfree.com/links?code=I82jgql8s7cg"
+                  href="https://payments.cashfree.com/forms/service-business"
                   target="_blank"
                   rel="noopener noreferrer" 
                   className="bg-gradient-to-r from-primary-600 to-violet-600 text-white px-6 py-2 rounded-full hover:from-primary-700 hover:to-violet-700 transition-all transform hover:scale-105 shadow-glow"
@@ -273,7 +274,7 @@ function App() {
                 <a href="#testimonials" className="block px-3 py-2 text-gray-300 hover:text-primary-400">Testimonials</a>
                 <a href="#pricing" className="block px-3 py-2 text-gray-300 hover:text-primary-400">Pricing</a>
                 <a
-                  href="https://payments.cashfree.com/links?code=I82jgql8s7cg"
+                  href="https://payments.cashfree.com/forms/service-business"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full mt-2 block text-center bg-gradient-to-r from-primary-600 to-violet-600 text-white px-6 py-2 rounded-full hover:from-primary-700 hover:to-violet-700"
@@ -315,7 +316,7 @@ function App() {
 
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a
-                href="https://payments.cashfree.com/links?code=I82jgql8s7cg"
+                href="https://payments.cashfree.com/forms/service-business"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackPixelEvent('InitiateCheckout')}
@@ -350,11 +351,14 @@ function App() {
                   key={index}
                   className="feature-card-gradient p-6 rounded-2xl shadow-premium hover:shadow-glow transition-all transform hover:-translate-y-1 border border-white/10"
                 >
-                  <div className="bg-gradient-to-br from-primary-500/20 to-violet-500/20 rounded-lg p-3 inline-block mb-4">
-                    {React.cloneElement(feature.icon, { className: "w-6 h-6 text-primary-400" })}
+                  {/* Updated icon container for mobile centering */}
+                  <div className="flex md:block justify-center">
+                    <div className="bg-gradient-to-br from-primary-500/20 to-violet-500/20 rounded-lg p-3 inline-block mb-4">
+                      {React.cloneElement(feature.icon, { className: "w-6 h-6 text-primary-400" })}
+                    </div>
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
-                  <p className="text-gray-300">{feature.description}</p>
+                  <h3 className="text-xl font-semibold text-white mb-2 text-center md:text-left">{feature.title}</h3>
+                  <p className="text-gray-300 text-center md:text-left">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -383,42 +387,37 @@ function App() {
               </p>
             </div>
 
-            {/* Enhanced grid layout */}
+            {/* Updated grid layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 perspective-1000">
               {galleryImages.map((image, index) => (
                 <div 
                   key={index} 
-                  className="group relative transform transition-all duration-700 hover:-translate-y-2 hover:rotate-1"
+                  className="group relative transform transition-all duration-700 hover:-translate-y-2 hover:rotate-1 cursor-pointer"
+                  onClick={() => window.open(image.src, '_blank')}
                 >
-                  {/* Enhanced gradient border effect */}
-                  <div className="absolute -inset-[2px] bg-gradient-to-r from-primary-400 via-violet-400 to-primary-400 rounded-2xl opacity-0 group-hover:opacity-100 blur-sm transition-all duration-700 animate-gradient-xy" />
-                  
                   <div className="relative bg-dark-800/90 p-3 rounded-2xl backdrop-blur-sm 
                     shadow-[0_8px_32px_rgba(79,70,229,0.15)]
                     group-hover:shadow-[0_20px_80px_rgba(79,70,229,0.3)]
                     transition-all duration-700 border border-white/10 group-hover:border-white/20">
                     
-                    {/* Enhanced image container */}
+                    {/* Image container */}
                     <div className="overflow-hidden rounded-xl aspect-[4/3]">
                       <img 
                         src={image.src}
                         alt={image.alt}
                         className="w-full h-full object-contain sm:object-cover transition-all duration-700 
-                          group-hover:scale-110 group-hover:rotate-2 filter brightness-90 group-hover:brightness-110
                           p-2 sm:p-0"
                       />
                     </div>
 
-                    {/* Enhanced overlay with title */}
+                    {/* Title overlay */}
                     <div className="absolute inset-0 rounded-2xl flex items-center justify-center
                       bg-gradient-to-b from-transparent via-dark-900/60 to-dark-900/95
-                      opacity-0 group-hover:opacity-100 transition-all duration-700
-                      backdrop-blur-[2px] group-hover:backdrop-blur-[4px]">
-                      <div className="text-center p-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700">
+                      opacity-0 group-hover:opacity-100 transition-all duration-700">
+                      <div className="text-center p-6">
                         <span className="inline-flex items-center text-white text-lg font-medium px-6 py-3 rounded-full 
                           bg-gradient-to-r from-primary-600/90 to-violet-600/90 backdrop-blur-md
-                          shadow-[0_8px_32px_rgba(79,70,229,0.3)] border border-white/10
-                          hover:shadow-[0_12px_48px_rgba(79,70,229,0.4)] transition-all duration-300">
+                          shadow-[0_8px_32px_rgba(79,70,229,0.3)] border border-white/10">
                           {image.title}
                         </span>
                       </div>
@@ -510,7 +509,7 @@ function App() {
                   <h3 className="text-2xl font-bold text-white mb-4">Premium Package</h3>
                   <div className="flex items-center justify-center mb-4">
                     <span className="text-gray-400 text-2xl mr-2">₹</span>
-                    <span className="text-6xl font-bold bg-gradient-to-r from-white via-primary-200 to-violet-200 text-transparent bg-clip-text">499</span>
+                    <span className="text-6xl font-bold bg-gradient-to-r from-white via-primary-200 to-violet-200 text-transparent bg-clip-text">999</span>
                     <span className="text-gray-400 ml-2 text-lg">/lifetime</span>
                   </div>
                   <p className="text-primary-400">One-time payment, lifetime access</p>
@@ -540,7 +539,7 @@ function App() {
 
                 <div className="text-center">
                   <a
-                    href="https://payments.cashfree.com/links?code=I82jgql8s7cg"
+                    href="https://payments.cashfree.com/forms/service-business"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackPixelEvent('InitiateCheckout')}
@@ -579,7 +578,7 @@ function App() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 px-4 bg-gradient-to-r from-primary-600 to-violet-600">
+        {/* <section className="py-20 px-4 bg-gradient-to-r from-primary-600 to-violet-600">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Ready to Transform Your Business?
@@ -588,7 +587,7 @@ function App() {
               Join thousands of successful business owners who have streamlined their operations.
             </p>
             <a
-              href="https://payments.cashfree.com/links?code=I82jgql8s7cg"
+              href="https://payments.cashfree.com/forms/service-business"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackPixelEvent('InitiateCheckout')}
@@ -598,7 +597,7 @@ function App() {
               <ChevronRight className="ml-2 h-5 w-5" />
             </a>
           </div>
-        </section>
+        </section> */}
 
         {/* Footer */}
         <footer className="bg-dark-900/50 text-gray-300 py-12 px-4 glass-effect">
