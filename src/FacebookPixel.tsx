@@ -7,74 +7,83 @@ declare global {
   }
 }
 
-interface FbqFunction {
-  callMethod?: (...args: any[]) => void;
-  queue?: any[];
-  push?: (...args: any[]) => void;
-  loaded?: boolean;
-  version?: string;
-  (...args: any[]): void;
-}
-
 const PIXEL_ID = '419577397226702';
 
 const FacebookPixel = (): JSX.Element => {
   useEffect(() => {
     try {
-      // Add Facebook Pixel base code
-      const addPixelScript = (f: Window, b: Document, e: string, v: string) => {
+      // Initialize Facebook Pixel
+      !(function(f: any, b: any, e: any, v: any, n: any, t: any, s: any) {
         if (f.fbq) return;
-        
-        const fbq = function(this: FbqFunction, ...args: any[]) {
-          if (this.callMethod) {
-            this.callMethod.apply(this, args);
-          } else {
-            this.queue?.push(args);
-          }
-        } as FbqFunction;
-        
-        fbq.queue = [];
-        fbq.loaded = true;
-        fbq.version = '2.0';
-        
-        f.fbq = fbq;
-        f._fbq = fbq;
-
-        const script = b.createElement('script') as HTMLScriptElement;
-        script.async = true;
-        script.src = v;
-        
-        const firstScript = b.getElementsByTagName(e)[0];
-        firstScript?.parentNode?.insertBefore(script, firstScript);
-      };
-
-      // Initialize the pixel
-      addPixelScript(
+        n = f.fbq = function() {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
         window,
         document,
         'script',
         'https://connect.facebook.net/en_US/fbevents.js'
       );
 
-      // Initialize Facebook Pixel
+      // Initialize with your Pixel ID
       window.fbq('init', PIXEL_ID);
+      
+      // Track PageView
       window.fbq('track', 'PageView');
 
-      // Track when someone starts the checkout
-      const trackCheckout = () => {
-        window.fbq('track', 'InitiateCheckout');
-      };
-
-      // Add event listeners to all checkout buttons
-      const checkoutButtons = document.querySelectorAll('a[href*="cashfree.com/forms/service-business"]');
-      checkoutButtons.forEach(button => {
-        button.addEventListener('click', trackCheckout);
+      // Track ViewContent for the current page
+      window.fbq('track', 'ViewContent', {
+        content_name: document.title,
+        content_type: 'website',
       });
 
-      // Cleanup
+      // Add event listeners for tracking
+      const trackEvent = (eventName: string) => {
+        window.fbq('track', eventName);
+        console.log('Facebook Pixel Event:', eventName); // For debugging
+      };
+
+      // Track clicks on all checkout/purchase buttons
+      const trackableElements = document.querySelectorAll(
+        'a[href*="cashfree.com"], button:contains("Get Started"), a:contains("Get Started")'
+      );
+
+      trackableElements.forEach(element => {
+        element.addEventListener('click', () => {
+          trackEvent('InitiateCheckout');
+        });
+      });
+
+      // Track scroll depth
+      let hasTrackedScroll = false;
+      const handleScroll = () => {
+        if (!hasTrackedScroll && window.scrollY > window.innerHeight) {
+          trackEvent('ScrollDepth');
+          hasTrackedScroll = true;
+        }
+      };
+      window.addEventListener('scroll', handleScroll);
+
+      // Track time spent
+      setTimeout(() => {
+        trackEvent('TimeSpent');
+      }, 30000); // Track after 30 seconds
+
+      // Cleanup function
       return () => {
-        checkoutButtons.forEach(button => {
-          button.removeEventListener('click', trackCheckout);
+        window.removeEventListener('scroll', handleScroll);
+        trackableElements.forEach(element => {
+          element.removeEventListener('click', () => trackEvent('InitiateCheckout'));
         });
       };
     } catch (error) {
