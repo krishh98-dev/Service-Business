@@ -380,10 +380,10 @@ function App() {
                 <span className="text-primary-400 text-base font-medium">Interactive Gallery</span>
               </div>
               <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-primary-200 to-violet-200 text-transparent bg-clip-text animate-gradient">
-                Our Tool Preview
+                🔍 Explore the Features Before You Buy!
               </h2>
               <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                Experience the power of our comprehensive business management solution through these interactive previews
+                🔥 "Ready to streamline your business? ⚡ Dive into our interactive preview and see the magic for yourself! 🚀📊"
               </p>
             </div>
 
