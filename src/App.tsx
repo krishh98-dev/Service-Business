@@ -436,7 +436,7 @@ function App() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white via-primary-200 to-violet-200 text-transparent bg-clip-text">
-                Loved by Business Owners
+                "Join 10,000+ Business Owners 🚀"
               </h2>
               <p className="text-xl text-gray-300">
                 See what our customers have to say about their experience.
